@@ -1,0 +1,6 @@
+service:
+  name: gocode-template
+  port: :8678
+
+mongodb:
+  uri: mongodb://localhost:27017/?maxPoolSize=200&w=majority

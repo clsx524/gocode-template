@@ -4,3 +4,5 @@
 /.pids
 /.pants.workdir.file_lock*
 
+.idea
+__pycache__

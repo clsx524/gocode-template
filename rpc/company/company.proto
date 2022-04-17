@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+option java_package = "com.github.rippling.rpc";
+option java_outer_classname = "CompanyProtos";
+
+option go_package = "rpc/company";
+
+import "google/protobuf/duration.proto";
+
+
+message Company {
+  string id = 1;
+  string name = 2;
+  google.protobuf.Duration sinceLastUpdated = 3;
+}
+
+message AddRequest {
+  repeated Company instances = 1;
+}
+
+message AddResponse {
+  bool status = 1;
+}
+
+message SearchResponse {
+  repeated Company instances = 1;
+}
+message SearchRequest {
+  string name = 1;
+}
+service CompanyService {
+  rpc Search (SearchRequest) returns (SearchResponse);
+  rpc Add (AddRequest) returns (AddResponse);
+}

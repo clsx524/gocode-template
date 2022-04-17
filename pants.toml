@@ -1,13 +1,26 @@
-# Copyright 2021 Pants project contributors.
-# Licensed under the Apache License, Version 2.0 (see LICENSE).
-
 [GLOBAL]
-pants_version = "2.9.0.dev3"
-backend_packages = ["pants.backend.experimental.go"]
+pants_version = "2.10.0"
+backend_packages = [
+    "pants.backend.experimental.go",
+    "pants.backend.docker",
+    "pants.backend.shell",
+    "pants.backend.shell.lint.shfmt",
+    "pants.backend.shell.lint.shellcheck",
+    "pants.backend.python",
+    "pants.backend.plugin_development",
+    "proto_compile",
+    "gomock",
+]
+pythonpath = ["%(buildroot)s/pants-plugins"]
+use_deprecated_python_macros = false
+
+[source]
+root_patterns = [
+    "pants-plugins",
+]
 
 [anonymous-telemetry]
-enabled = true
-repo_id = "AE018A26-213E-4B18-99A6-6923EC1E16DE"
+enabled = false 
 
 [golang]
-expected_version = "1.17"
+expected_version = "1.18"
