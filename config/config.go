@@ -25,42 +25,46 @@ const (
 	defaultConfigDir = "config"
 )
 
+// Provider defines all configuration interfaces used in this service
 type Provider interface {
 	LoggerConfig() zap.Config
 	ServiceConfig() ServiceConfig
 	MongoConfig() MongoConfig
 }
 
-type AppConfig struct {
+type appConfig struct {
 	Logger  zap.Config
 	Service ServiceConfig `yaml:"service"`
 	MongoDB MongoConfig   `yaml:"mongodb"`
 }
 
+// ServiceConfig defines all configuration fields on service level
 type ServiceConfig struct {
 	Name        string `yaml:"name"`
 	Environment string
 	Port        string `yaml:"port"`
 }
 
+// MongoConfig defines all configuration fields for mongodb
 type MongoConfig struct {
 	URI string `yaml:"uri"`
 }
 
-func (c *AppConfig) LoggerConfig() zap.Config {
+func (c *appConfig) LoggerConfig() zap.Config {
 	return c.Logger
 }
 
-func (c *AppConfig) ServiceConfig() ServiceConfig {
+func (c *appConfig) ServiceConfig() ServiceConfig {
 	return c.Service
 }
 
-func (c *AppConfig) MongoConfig() MongoConfig {
+func (c *appConfig) MongoConfig() MongoConfig {
 	return c.MongoDB
 }
 
+// New returns the configuration Provider
 func New() (Provider, error) {
-	var c AppConfig
+	var c appConfig
 	provider, err := getConfigProvider()
 	if err != nil {
 		return nil, err

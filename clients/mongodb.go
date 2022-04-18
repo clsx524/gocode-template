@@ -1,4 +1,4 @@
-package client
+package clients
 
 import (
 	"context"
@@ -11,10 +11,12 @@ import (
 
 const mongoUriEnvKey = "MONGODB_URI"
 
+// Mongo defines the necessary interface to access Mongo client
 type Mongo interface {
 	GetMongoClient(ctx context.Context) *mongo.Client
 }
 
+// MongoDeps defines all dependencies used in mongoClient module
 type MongoDeps struct {
 	fx.In
 
@@ -34,6 +36,7 @@ func (i *mongoClient) GetMongoClient(ctx context.Context) *mongo.Client {
 	return i.client
 }
 
+// ProvideMongoClient provides the Mongo client for other modules that requires access to mongodb
 func ProvideMongoClient(deps MongoDeps) (Mongo, error) {
 	if err := os.Setenv(mongoUriEnvKey, deps.MongoConfig().URI); err != nil {
 		return nil, err

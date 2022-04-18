@@ -59,7 +59,7 @@ async def proto_compile_go(console: Console, workspace: Workspace) -> ProtoCompi
         )
     )
 
-    if result.stderr.decode() is not None:
+    if result.stderr.decode() is not None and result.stderr.decode() != "":
         console.print_stdout(result.stderr.decode())
         return ProtoCompileGo(exit_code=1)
 

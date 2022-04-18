@@ -1,4 +1,4 @@
-package client
+package clients
 
 import (
 	"context"
@@ -7,10 +7,13 @@ import (
 	"go.uber.org/zap"
 )
 
+// Instrumenter defines the tools to instrument the code
+// including logging, metrics, profiling etc.
 type Instrumenter interface {
 	Logger() *zap.SugaredLogger
 }
 
+// InstrumenterDeps defines the dependencies used in the instrumenter module
 type InstrumenterDeps struct {
 	fx.In
 
@@ -27,6 +30,7 @@ func (i *instrumenter) Logger() *zap.SugaredLogger {
 	return i.logger
 }
 
+// ProvideInstrumenter provides the Instrumenter for use in other modules
 func ProvideInstrumenter(deps InstrumenterDeps) Instrumenter {
 	return &instrumenter{logger: newLogger(deps)}
 }

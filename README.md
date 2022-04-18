@@ -201,3 +201,5 @@ You are supposed to get company1 data from mongo DB.
 - add examples for integration tests and load tests
 - add pants goal for shell scripts
 - add pants goal for docker image build
+- add codegen for mocks of the fx input structs
+- integration with datadog for logging and metrics

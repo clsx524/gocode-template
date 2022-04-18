@@ -1,9 +1,9 @@
-package repository
+package repositories
 
 import (
 	"context"
-	"github.com/Rippling/gocode-template/client"
-	"github.com/Rippling/gocode-template/model"
+	"github.com/Rippling/gocode-template/clients"
+	"github.com/Rippling/gocode-template/models"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.uber.org/fx"
@@ -15,26 +15,27 @@ const (
 	collection = "company"
 )
 
-type Deps struct {
+// CompanyRepoDeps defines all dependencies used in Company repository
+type CompanyRepoDeps struct {
 	fx.In
 
-	client.Instrumenter
-	client.Mongo
+	clients.Instrumenter
+	clients.Mongo
 }
 
 type Company interface {
-	Search(ctx context.Context, name string) (*model.Company, error)
-	AddAll(ctx context.Context, companies []*model.Company) error
+	Search(ctx context.Context, name string) (*models.Company, error)
+	AddAll(ctx context.Context, companies []*models.Company) error
 }
 
 type company struct {
-	deps Deps
+	deps CompanyRepoDeps
 }
 
-func (m *company) Search(ctx context.Context, name string) (*model.Company, error) {
+func (m *company) Search(ctx context.Context, name string) (*models.Company, error) {
 	coll := m.deps.GetMongoClient(ctx).Database(database).Collection(collection)
 
-	var result model.Company
+	var result models.Company
 	err := coll.FindOne(ctx, bson.D{{"name", name}}).Decode(&result)
 	if err == mongo.ErrNoDocuments {
 		m.deps.Logger().Warn("No document was found with the name", zap.String("name", name))
@@ -47,7 +48,7 @@ func (m *company) Search(ctx context.Context, name string) (*model.Company, erro
 	return &result, nil
 }
 
-func (m *company) AddAll(ctx context.Context, companies []*model.Company) error {
+func (m *company) AddAll(ctx context.Context, companies []*models.Company) error {
 	coll := m.deps.GetMongoClient(ctx).Database(database).Collection(collection)
 
 	var many []interface{}
@@ -61,6 +62,7 @@ func (m *company) AddAll(ctx context.Context, companies []*model.Company) error 
 	return err
 }
 
-func New(deps Deps) Company {
+// New return an instance of Company repository
+func New(deps CompanyRepoDeps) Company {
 	return &company{deps}
 }

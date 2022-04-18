@@ -1,11 +1,11 @@
-package handler
+package apis
 
 import (
 	"context"
-	"github.com/Rippling/gocode-template/client"
-	"github.com/Rippling/gocode-template/model"
+	"github.com/Rippling/gocode-template/clients"
+	"github.com/Rippling/gocode-template/models"
 	pb "github.com/Rippling/gocode-template/rpc/company"
-	"github.com/Rippling/gocode-template/service"
+	"github.com/Rippling/gocode-template/services"
 	"go.uber.org/fx"
 	"go.uber.org/zap"
 	"google.golang.org/protobuf/types/known/durationpb"
@@ -14,8 +14,8 @@ import (
 type CompanyHandlerDeps struct {
 	fx.In
 
-	client.Instrumenter
-	service.Company
+	clients.Instrumenter
+	services.Company
 }
 
 type CompanyHandlerOutputs struct {
@@ -55,9 +55,9 @@ func (s *companyHandler) Search(ctx context.Context, req *pb.SearchRequest) (*pb
 func (s *companyHandler) Add(ctx context.Context, req *pb.AddRequest) (*pb.AddResponse, error) {
 	s.deps.Logger().Info("received add request")
 
-	var resp []*model.Company
+	var resp []*models.Company
 	for _, c := range req.Instances {
-		resp = append(resp, &model.Company{
+		resp = append(resp, &models.Company{
 			ID:   c.GetId(),
 			Name: c.GetName(),
 		})
