@@ -9,7 +9,7 @@ import (
 	http "net/http"
 	reflect "reflect"
 
-	company "github.com/Rippling/gocode-template/rpc/company"
+	company "github.com/clsx524/gocode-template/rpc/company"
 	gomock "github.com/golang/mock/gomock"
 )
 

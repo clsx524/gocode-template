@@ -2,8 +2,8 @@ package repositories
 
 import (
 	"context"
-	"github.com/Rippling/gocode-template/clients"
-	"github.com/Rippling/gocode-template/models"
+	"github.com/clsx524/gocode-template/clients"
+	"github.com/clsx524/gocode-template/models"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.uber.org/fx"

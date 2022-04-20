@@ -2,8 +2,9 @@ package services
 
 import (
 	"context"
-	"github.com/Rippling/gocode-template/models"
-	"github.com/Rippling/gocode-template/repositories"
+	client "github.com/clsx524/gocode-template/clients"
+	"github.com/clsx524/gocode-template/models"
+	"github.com/clsx524/gocode-template/repositories"
 	"go.uber.org/fx"
 )
 
@@ -11,6 +12,7 @@ import (
 type CompanySvcDeps struct {
 	fx.In
 
+	client.Instrumenter
 	repositories.Company
 }
 

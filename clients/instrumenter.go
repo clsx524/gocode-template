@@ -2,7 +2,7 @@ package clients
 
 import (
 	"context"
-	"github.com/Rippling/gocode-template/config"
+	"github.com/clsx524/gocode-template/config"
 	"go.uber.org/fx"
 	"go.uber.org/zap"
 )

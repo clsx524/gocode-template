@@ -7,7 +7,7 @@ package config
 import (
 	reflect "reflect"
 
-	config "github.com/Rippling/gocode-template/config"
+	config "github.com/clsx524/gocode-template/config"
 	gomock "github.com/golang/mock/gomock"
 	zap "go.uber.org/zap"
 )

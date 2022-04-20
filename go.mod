@@ -1,4 +1,4 @@
-module github.com/Rippling/gocode-template
+module github.com/clsx524/gocode-template
 
 go 1.18
 

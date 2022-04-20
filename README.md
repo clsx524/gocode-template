@@ -1,6 +1,6 @@
-# example-golang
+# golang-template
 
-An example repository to demonstrate Pants's experimental Golang support.
+An example repository to demonstrate Golang Service Architecture.
 
 See the [Golang blog post](https://blog.pantsbuild.org/golang-support-pants-28/) for some unique
 benefits Pants brings to Golang repositories, and see
@@ -16,7 +16,7 @@ Note: for now, Pants only supports repositories using a single `go.mod`. Please 
 than one `go.mod` so that we can prioritize adding support.
 
 # How to use this template?
-- global search "gocode-template" and replace it with your service name
+- global search "clsx524/gocode-template" and replace it with your service name as `Rippling/<service-name>`
 - refactor all Company structs in repository, service and handler to your business logic, by following MVC framework
 
 # Prerequisites

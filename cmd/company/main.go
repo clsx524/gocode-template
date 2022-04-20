@@ -2,12 +2,12 @@ package main
 
 import (
 	"context"
-	"github.com/Rippling/gocode-template/apis"
-	client "github.com/Rippling/gocode-template/clients"
-	config "github.com/Rippling/gocode-template/config"
-	"github.com/Rippling/gocode-template/repositories"
-	"github.com/Rippling/gocode-template/server"
-	"github.com/Rippling/gocode-template/services"
+	"github.com/clsx524/gocode-template/apis"
+	client "github.com/clsx524/gocode-template/clients"
+	config "github.com/clsx524/gocode-template/config"
+	"github.com/clsx524/gocode-template/repositories"
+	"github.com/clsx524/gocode-template/server"
+	"github.com/clsx524/gocode-template/services"
 	"go.uber.org/fx"
 )
 

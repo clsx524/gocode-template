@@ -2,8 +2,8 @@ package server
 
 import (
 	"context"
-	"github.com/Rippling/gocode-template/config"
-	pb "github.com/Rippling/gocode-template/rpc/company"
+	"github.com/clsx524/gocode-template/config"
+	pb "github.com/clsx524/gocode-template/rpc/company"
 	"go.uber.org/fx"
 	"net/http"
 )
@@ -17,7 +17,7 @@ type Deps struct {
 
 	// APIs gathers all Twirp Server in a list
 	// Each Twirp Server *needs* to have the group tag in FX
-	APIs []pb.TwirpServer `group:"handlers"`
+	APIs []pb.TwirpServer `group:"apis"`
 }
 
 // StartServer defines the function to start Twirp Server Mux

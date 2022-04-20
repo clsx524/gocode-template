@@ -8,7 +8,7 @@ import (
 	context "context"
 	reflect "reflect"
 
-	models "github.com/Rippling/gocode-template/models"
+	models "github.com/clsx524/gocode-template/models"
 	gomock "github.com/golang/mock/gomock"
 )
 

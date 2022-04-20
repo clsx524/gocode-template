@@ -2,10 +2,10 @@ package apis
 
 import (
 	"context"
-	"github.com/Rippling/gocode-template/clients"
-	"github.com/Rippling/gocode-template/models"
-	pb "github.com/Rippling/gocode-template/rpc/company"
-	"github.com/Rippling/gocode-template/services"
+	"github.com/clsx524/gocode-template/clients"
+	"github.com/clsx524/gocode-template/models"
+	pb "github.com/clsx524/gocode-template/rpc/company"
+	"github.com/clsx524/gocode-template/services"
 	"go.uber.org/fx"
 	"go.uber.org/zap"
 	"google.golang.org/protobuf/types/known/durationpb"
@@ -21,7 +21,7 @@ type CompanyHandlerDeps struct {
 type CompanyHandlerOutputs struct {
 	fx.Out
 
-	CompanyServer pb.TwirpServer `group:"handlers"`
+	CompanyServer pb.TwirpServer `group:"apis"`
 }
 
 type companyHandler struct {

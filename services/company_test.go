@@ -3,8 +3,8 @@ package services
 import (
 	"context"
 	"errors"
-	"github.com/Rippling/gocode-template/mocks/repositories"
-	"github.com/Rippling/gocode-template/models"
+	"github.com/clsx524/gocode-template/mocks/repositories"
+	"github.com/clsx524/gocode-template/models"
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/assert"
 	"testing"
