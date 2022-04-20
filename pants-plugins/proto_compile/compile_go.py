@@ -7,10 +7,10 @@ Please follow https://github.com/pantsbuild/pants/tree/main/src/python/pants/bac
 import os
 
 from pants.engine.console import Console
-from pants.engine.fs import Workspace, PathGlobs
+from pants.engine.fs import Workspace, PathGlobs, CreateDigest
 from pants.engine.goal import GoalSubsystem, Goal
 from pants.engine.internals.native_engine import Digest, Snapshot, MergeDigests
-from pants.engine.internals.selectors import Get
+from pants.engine.internals.selectors import Get, MultiGet
 from pants.engine.process import ProcessResult, Process, BinaryPaths, BinaryPathRequest
 from pants.engine.rules import goal_rule, collect_rules
 
@@ -26,7 +26,7 @@ class ProtoCompileGo(Goal):
 
 @goal_rule
 async def proto_compile_go(console: Console, workspace: Workspace) -> ProtoCompileGo:
-    proto_digest = await Get(Digest, PathGlobs(["rpc/**/*.proto"]))
+    proto_digest = await Get(Digest, PathGlobs(["idl/**/*.proto"]))
     proto_snapshot = await Get(Snapshot, Digest, proto_digest)
 
     bin_digest = await Get(Digest, PathGlobs(["bin/**"]))
@@ -34,8 +34,11 @@ async def proto_compile_go(console: Console, workspace: Workspace) -> ProtoCompi
 
     output_files = []
     for path in proto_snapshot.files:
-        output_files.append(os.path.splitext(path)[0]+'.twirp.go')
-        output_files.append(os.path.splitext(path)[0]+'.pb.go')
+        pathsplit = os.path.splitext(path)[0].split('/')
+        pathsplit = pathsplit[1:]
+        pathsplit[0] = 'rpc'
+        output_files.append('/'.join(pathsplit)+'.twirp.go')
+        output_files.append('/'.join(pathsplit)+'.pb.go')
 
     protoc_paths = await Get(
         BinaryPaths,

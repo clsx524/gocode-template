@@ -1,8 +1,11 @@
+// This file should be put under `idl/<service name>/<module name>`
 syntax = "proto3";
 
 option java_package = "com.github.rippling.rpc";
 option java_outer_classname = "CompanyProtos";
 
+// This will be the output directory when it's compiled into go code
+// Do not include service name in the path. It should follow `rpc/<module name>`
 option go_package = "rpc/company";
 
 import "google/protobuf/duration.proto";
